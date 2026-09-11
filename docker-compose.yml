@@ -1,6 +1,8 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      network: host # npm's postinstall (Caddy download) can blackhole on Docker's default bridge MTU on some hosts
     ports:
       - "8080:80" # Caddy, HTTP
       - "8443:443" # Caddy, HTTPS (local self-signed cert for "localhost")
